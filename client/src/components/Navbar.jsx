@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react'
+import { React, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { assets } from "../assets/assets";
 import { useClerk, useUser, UserButton } from '@clerk/clerk-react';
@@ -35,11 +35,27 @@ const Navbar = () => {
         setIsScrolled(prev => location.pathname !== '/' ? true:prev);
 
         const handleScroll = () => {
-            setIsScrolled(window.scrolly > 10);
+            setIsScrolled(window.scrollY > 10);
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, [location.pathname]);
+
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         setIsScrolled(window.scrollY > 10);
+    //     };
+
+    //     // Apply scroll listener only on homepage
+    //     if (location.pathname === '/') {
+    //         window.addEventListener("scroll", handleScroll);
+    //         // Check initial scroll position in case page loads already scrolled
+    //         handleScroll();
+    //         return () => window.removeEventListener("scroll", handleScroll);
+    //     } else {
+    //         setIsScrolled(true); // Force navbar styles on non-home pages
+    //     }
+    // }, [location.pathname]);
 
     return (
         <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${isScrolled ? "bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4" : "py-4 md:py-6"}`}>
@@ -64,7 +80,7 @@ const Navbar = () => {
 
             {/* Desktop Right */}
             <div className="hidden md:flex items-center gap-4">
-                <img src={assets.searchIcon} alt="search" className={`${isScrolled && invert} h-7 transition-all duration-500`} />
+                <img src={assets.searchIcon} alt="search" className={`${isScrolled && "invert"} h-7 transition-all duration-500`} />
                 {user ? (<UserButton>
                     <UserButton.MenuItems>
                         <UserButton.Action label="My Bookings" labelIcon={<bookIcon />} onClick={() => navigate('/my-bookings')} />
@@ -82,7 +98,7 @@ const Navbar = () => {
                         <UserButton.Action label="My Bookings" labelIcon={<bookIcon />} onClick={() => navigate('/my-bookings')} />
                     </UserButton.MenuItems>
                 </UserButton>}
-                <img onClick={() => setIsMenuOpen(!isMenuOpen)} src={assets.menuIcon} alt="" className={`${isScrolled && invert} h-4`} />
+                <img onClick={() => setIsMenuOpen(!isMenuOpen)} src={assets.menuIcon} alt="" className={`${isScrolled && 'invert'} h-4`} />
             </div>
 
             {/* Mobile Menu */}
