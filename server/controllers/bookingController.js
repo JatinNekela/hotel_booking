@@ -42,10 +42,10 @@ export const createBooking = async (req, res) => {
             checkOutDate,
             room
         });
-        if (!isAvailable)
+        if (!isAvailable)   
             return res.json({ success: false, message: "room not available" });
         //get room price
-        const roomData = Room.findById(room).populate("hotel");
+        const roomData = await Room.findById(room).populate("hotel");
         let totalPrice = roomData.pricePerNight;
         //calculate total price  
         const checkIn = new Date(checkInDate)
@@ -74,7 +74,7 @@ export const createBooking = async (req, res) => {
 export const getUserBookings = async (req, res) => {
     try {
         const user = req.user._id;
-        const bookings = await Booking.find({ user }).populate("room hotel").sort({ createdAt: -1 })
+        const bookings = await Booking.find({user}).populate("room hotel").sort({ createdAt: -1 })
         res.json({ success: true, bookings });
     } catch (error) {
         res.json({ success: false, message: "failed to fetch booking" });
