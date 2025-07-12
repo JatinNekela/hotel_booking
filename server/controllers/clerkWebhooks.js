@@ -3,6 +3,7 @@ import { Webhook } from "svix";
 
 const clerkWebhooks = async (req, res) => {
     try{
+        console.log("log1",req);
         // create a Svix instance with clerk webhook secret.
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
         //getting headers
@@ -11,6 +12,7 @@ const clerkWebhooks = async (req, res) => {
             'svix-timestamp' : req.headers["svix-timestamp"],
             'svix-signature' : req.headers["svix-signature"],
         };
+        console.log("log2");
         //verify headers
         await whook.verify(JSON.stringify(req.body), headers)
 
@@ -22,10 +24,15 @@ const clerkWebhooks = async (req, res) => {
             email : data.email_addresses[0].email_address,
             username : data.first_name + " " + data.last_name,
             image : data.image_url, 
+            recentSearchedCities : "",
         }
+        console.log("Webhook event type:", type);
+        console.log("Webhook payload:", req.body);
+
         //switch case for different events
         switch (type) {
             case "user.created":{
+                console.log("request sent to add in DB")
                 await User.create(userData);
                 break;
             }

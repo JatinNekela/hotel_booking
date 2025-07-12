@@ -3,6 +3,7 @@ import User from "../models/User.js";
 
 export const registerHotel = async (req, res) => {
     try {
+        // console.log("req.user = ", req.user);
         const {name, address, contact, city} = req.body;
         const owner = req.user._id
         //check if hotel already registered 
