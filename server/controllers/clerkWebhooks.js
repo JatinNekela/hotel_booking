@@ -27,7 +27,7 @@ const clerkWebhooks = async (req, res) => {
             recentSearchedCities : "jaipur",
         }
         console.log("Webhook event type:", type);
-        console.log("Webhook payload:", req.body);
+        // console.log("Webhook payload:", req.body);
 
         //switch case for different events
         switch (type) {
