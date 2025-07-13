@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import { Webhook } from "svix";
+import mongoose from "mongoose";
 
 const clerkWebhooks = async (req, res) => {
     try{
@@ -33,6 +34,7 @@ const clerkWebhooks = async (req, res) => {
         switch (type) {
             case "user.created":{
                 console.log("request sent to add in DB")
+                console.log("Mongoose connection state:", mongoose.connection.readyState);
                 await User.create(userData);
                 break;
             }
