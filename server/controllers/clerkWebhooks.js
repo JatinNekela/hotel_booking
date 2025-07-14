@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 const clerkWebhooks = async (req, res) => {
     try{
-        console.log("log1",req);
+        // console.log("log1",req);
         // create a Svix instance with clerk webhook secret.
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
         //getting headers
@@ -13,7 +13,7 @@ const clerkWebhooks = async (req, res) => {
             'svix-timestamp' : req.headers["svix-timestamp"],
             'svix-signature' : req.headers["svix-signature"],
         };
-        console.log("log2");
+        // console.log("log2");
         //verify headers
         await whook.verify(JSON.stringify(req.body), headers)
 
@@ -33,8 +33,8 @@ const clerkWebhooks = async (req, res) => {
         //switch case for different events
         switch (type) {
             case "user.created":{
-                console.log("request sent to add in DB")
-                console.log("Mongoose connection state:", mongoose.connection.readyState);
+                // console.log("request sent to add in DB")
+                // console.log("Mongoose connection state:", mongoose.connection.readyState);
                 await User.create(userData);
                 break;
             }

@@ -22,9 +22,9 @@ export const createRoom = async (req, res) => {
             amenities: JSON.parse(amenities),
             images,
         })
-        response.json({success: true, message: "room created successfully"});
+        res.json({success: true, message: "room created successfully"});
     } catch (error) {
-        response.json({success: false , message: error.message});
+        res.json({success: false , message: error.message});
     }
 }
 
