@@ -18,7 +18,7 @@ const AddRoom = () => {
         roomType: '',
         pricePerNight: 0,
         amenities: {
-            'Free Wifi': false,
+            'Free WiFi': false,
             'Free Breakfast': false,
             'Room Service': false,
             'Pool Access': false,
@@ -57,7 +57,7 @@ const AddRoom = () => {
                     roomType: '',
                     pricePerNight: 0,
                     amenities: {
-                        'Free Wifi' : false,
+                        'Free WiFi' : false,
                         'Free Breakfast' : false,
                         'Room Service' : false,
                         'Mountain View' : false,
@@ -94,10 +94,10 @@ const AddRoom = () => {
                     <select value={inputs.roomType} onChange={e => setInputs({ ...inputs, roomType: e.target.value })}
                         className="border opacity-70 border-gray-300 mt-1 rounded p-2 w-full" >
                         <option value="">Select Room Type </option>
-                        <option value="Single bed">Single bed </option>
-                        <option value="Double bed">Double bed </option>
-                        <option value="Luxury Room">Luxury Room </option>
-                        <option value="Family Suit">Family Suit </option>
+                        <option value="single-bed">Single Bed </option>
+                        <option value="double-bed">Double Bed </option>
+                        <option value="luxary-room">Luxury room </option>
+                        <option value="family-suit">Family suit </option>
                     </select>
                 </div>
                 <div className="">
