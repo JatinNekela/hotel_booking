@@ -10,7 +10,7 @@ const MyBookings = () => {
 
     const fetchUserBookings = async () => {
         try {
-            const {data} = await axios.get('/apu/bookings/user',{headers: {Authorization:`Bearer ${await getToken()}`}})
+            const {data} = await axios.get('/api/bookings/user',{headers: {Authorization:`Bearer ${await getToken()}`}})
             if(data.success) {
                 setBookings(data.bookings)
             } else {

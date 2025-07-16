@@ -20,19 +20,19 @@ const clerkWebhooks = async (req, res) => {
         //getting data from request body
         const {data, type} = req.body
 
-        const userData = {
-            _id : data.id,
-            email : data.email_addresses[0].email_address,
-            username : data.first_name + " " + data.last_name,
-            image : data.image_url, 
-            recentSearchedCities : "jaipur",
-        }
-        console.log("Webhook event type:", type);
-        // console.log("Webhook payload:", req.body);
+        
+        // console.log("Webhook event type:", type);
 
         //switch case for different events
         switch (type) {
             case "user.created":{
+                const userData = {
+                    _id: data.id,
+                    email: data.email_addresses[0].email_address,
+                    username: data.first_name + " " + data.last_name,
+                    image: data.image_url,
+                    recentSearchedCities: "jaipur",
+                }
                 // console.log("request sent to add in DB")
                 // console.log("Mongoose connection state:", mongoose.connection.readyState);
                 await User.create(userData);
@@ -40,6 +40,13 @@ const clerkWebhooks = async (req, res) => {
             }
             
             case "user.updated":{
+                const userData = {
+                    _id: data.id,
+                    email: data.email_addresses[0].email_address,
+                    username: data.first_name + " " + data.last_name,
+                    image: data.image_url,
+                    recentSearchedCities: "jaipur",
+                }
                 await User.findByIdAndUpdate(data.id, userData);
                 break;
             }
