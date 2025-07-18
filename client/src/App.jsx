@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import RoomDetails from './pages/RoomDetails';
 import MyBookings from './pages/MyBookings';
 import HotelReg from './components/HotelReg';
+import Loader from './components/Loader';
 import Layout from './pages/HotelOwner/Layout'
 import Dashboard from './pages/HotelOwner/Dashboard';
 import AddRoom from './pages/HotelOwner/AddRoom';
@@ -29,6 +30,7 @@ const App = () => {
           <Route path='/rooms' element={<AllRooms/>}/>
           <Route path='/rooms/:id' element={<RoomDetails/>}/>
           <Route path='/my-bookings' element={<MyBookings/>}/>
+          <Route path='/loader/:nextUrl' element={<Loader/>}/>
           <Route path='/owner' element={<Layout/>} >
             <Route index element={<Dashboard />}/>
             <Route path="add-room" element={<AddRoom />}/>
