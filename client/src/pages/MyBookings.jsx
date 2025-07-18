@@ -24,14 +24,14 @@ const MyBookings = () => {
 
     const handlePayment = async (bookingId) => {
         try {
-            const {data} = await axios.post('/api/bookings/stripe-payments',{bookingId},{headers: {Authorization:`Bearer ${await getToken()}`}})
+            const {data} = await axios.post('/api/bookings/stripe-payment',{bookingId},{headers: {Authorization:`Bearer ${await getToken()}`}})
             if(data.success) {
                 window.location.href = data.url
             } else {
                 toast.error(data.message);
             }
         } catch (error) {
-            toast.error(data.message);
+            toast.error(error.message);
         }
     }
 
