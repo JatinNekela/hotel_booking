@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { assets } from '../../assets/assets'
-import { UserButton } from '@clerk/clerk-react'
 
 const Navbar = () => {
     return (
@@ -9,9 +8,7 @@ const Navbar = () => {
             <Link to='/'>
                 <img src={assets.logo} alt="logo" className='h-9 invert opacity-80'/>
             </Link>
-            {/* <UserButton /> */}
         </div>
-
     )
 }
 export default Navbar
