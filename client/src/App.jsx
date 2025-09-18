@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import RoomDetails from './pages/RoomDetails';
 import MyBookings from './pages/MyBookings';
 import HotelReg from './components/HotelReg';
+import AuthModal from './components/AuthModal';
 import Loader from './components/Loader';
 import Layout from './pages/HotelOwner/Layout'
 import Dashboard from './pages/HotelOwner/Dashboard';
@@ -18,11 +19,13 @@ import { useAppContext } from './context/AppContext';
 const App = () => {
   const isOwnerPath = useLocation().pathname.includes("owner");
   const {showHotelReg} = useAppContext();
+  const {showAuth} = useAppContext();
   return (
     <div>
       <Toaster />
       {!isOwnerPath && <Navbar />}
       {showHotelReg && <HotelReg />}
+      {showAuth && <AuthModal />}
       {/* <div className='min-h-[70-vh]'></div>  this is tailwind css */}
       <div className='min-h-[70-vh]'>
         <Routes>

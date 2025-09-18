@@ -107,10 +107,14 @@ export const getUserBookings = async (req, res) => {
 
 export const getHotelBookings = async (req, res) => {
     try {
-        const hotel = await Hotel.findOne({ owner: req.auth.userId });
+        // console.log("user:", req.user._id);
+        const hotel = await Hotel.findOne({ owner: req.user._id });
+        // console.log("hotel:", hotel);
         if (!hotel)
             return res.json({ success: false, message: "no hotel found" });
+        // console.log("hotel id:", hotel._id);
         const bookings = await Booking.find({ hotel: hotel._id }).populate("room hotel user").sort({ createdAt: -1 });
+        // console.log("bookings:", bookings);
         // total bookings 
         const totalBookings = bookings.length
         //total revenue

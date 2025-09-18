@@ -9,7 +9,7 @@ const Navbar = () => {
             <Link to='/'>
                 <img src={assets.logo} alt="logo" className='h-9 invert opacity-80'/>
             </Link>
-            <UserButton />
+            {/* <UserButton /> */}
         </div>
 
     )

@@ -7,11 +7,11 @@ import toast from "react-hot-toast";
 const ListRoom = () => {
 
     const [rooms, setRooms] = useState([])
-    const {axios, getToken, user, currency} = useAppContext()
+    const {axios, user, currency} = useAppContext()
     //fetch rooms for the owner
     const fetchRooms = async () => {
         try {
-            const {data} = await axios.get('/api/rooms/owner', {headers: {Authorization: `Bearer ${await getToken()}`}})
+            const {data} = await axios.get('/api/rooms/owner')
             if(data.success){
                 setRooms(data.rooms)
             } else {
@@ -24,7 +24,7 @@ const ListRoom = () => {
 
     //toggle availability of room
     const toggleAvailability = async (roomId) => {
-        const {data} = await axios.post('/api/rooms/toggle-availability', {roomId}, {headers: {Authorization: `Bearer ${await getToken()}`}})
+        const {data} = await axios.post('/api/rooms/toggle-availability', {roomId})
         if(data.success) {
             toast.success(data.message)
             fetchRooms()

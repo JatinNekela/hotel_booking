@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 
 const RoomDetails = () => {
     const { id } = useParams() //url parameter
-    const {rooms, getToken, axios, navigate} = useAppContext();
+    const {rooms, axios, navigate} = useAppContext();
     const [room, setRoom] = useState(null);
     const [mainImage, setMainImage] = useState(null);
     const [checkInDate, setCheckInDate] = useState(null);
@@ -45,7 +45,7 @@ const RoomDetails = () => {
             if(!isAvailable) {
                 return checkAvailability();
             } else {
-                const {data} = await axios.post('/api/bookings/book', {room: id, checkInDate, checkOutDate, guests, paymentMethod: "Pay at Hotel"}, {headers: {Authorization:`Bearer ${await getToken()}`}})
+                const {data} = await axios.post('/api/bookings/book', {room: id, checkInDate, checkOutDate, guests, paymentMethod: "Pay at Hotel"})
                 if(data.success) {
                     toast.success(data.message);
                     navigate('/my-bookings');
@@ -114,7 +114,7 @@ const RoomDetails = () => {
             {/* room price */}
             <p className='text-2xl font-medium'>${room.pricePerNight}/night </p>
             {/* check-in check-out form */}
-            <form onSubmit={onSubmitHandler} ClassName='flex flex-col md:flex-row items-start md:items-center justify-between bg-white shadow-[0px_0px_20px_rgba(0,0,0, 0.15) ] p-6 rounded-x1 mx-auto mt-16 max-w-6x1'>
+            <form onSubmit={onSubmitHandler} className='flex flex-col md:flex-row items-start md:items-center justify-between bg-white shadow-[0px_0px_20px_rgba(0,0,0, 0.15) ] p-6 rounded-x1 mx-auto mt-16 max-w-6x1'>
 
                 <div className='flex flex-col flex-wrap md:flex-row items-start md:items-center gap-4 md:gap-10 text-gray-500'>
                     <div className='flex flex-col'>
