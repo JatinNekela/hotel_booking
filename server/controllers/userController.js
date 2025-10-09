@@ -123,3 +123,26 @@ export const logout = async(req,res) => {
         return res.json({success: false, message: error.message})
     }
 }
+
+export const changePassword = async (req, res) => {
+    const { oldPassword, newPassword } = req.body;
+    const currentUser = req.user;
+    try {
+        const foundUser = await User.findOne({email : currentUser.email});
+        // console.log(foundUser);
+        if(!foundUser) {
+            return res.json({success: false, message: "user not found"})
+        }
+        // console.log(foundUser.password);
+        const isMatch = await bcrypt.compare(oldPassword, foundUser.password);
+        if(!isMatch) {
+            return res.json({success: false, message: "password incorrect"})
+        }
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        foundUser.password = hashedPassword;
+        await foundUser.save();
+        return res.json({success: true, message: "password changed successfully"})
+    } catch (error) {
+        return res.json({success: false, message: error.message})
+    }
+}
